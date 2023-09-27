@@ -57,7 +57,7 @@ class UserPresenter extends Presenter implements Personable, Searchable
 
         $default = urlencode('https://raw.githubusercontent.com/orchidsoftware/.github/main/web/avatars/gravatar.png');
 
-        return "https://www.gravatar.com/avatar/$hash?d=$default";
+        return "https://cravatar.cn/avatar/$hash?d=$default";
     }
 
     /**
