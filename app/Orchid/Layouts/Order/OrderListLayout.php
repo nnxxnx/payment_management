@@ -13,12 +13,12 @@ use App\Models\OrderProduct;
 use App\Models\Shop;
 use App\Orchid\CustomComponents\Actions\PrintModalToggle;
 use App\Orchid\CustomComponents\Actions\TableActions;
-use App\Orchid\Layouts\Table;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
 class OrderListLayout extends Table
@@ -26,7 +26,7 @@ class OrderListLayout extends Table
     /**
      * @var string
      */
-    public string $target = 'orders';
+    public $target = 'orders';
 
     /**
      * @return TD[]
