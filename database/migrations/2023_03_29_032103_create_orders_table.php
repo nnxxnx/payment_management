@@ -25,6 +25,7 @@ return new class extends Migration {
             $table->tinyInteger('status')->default(1)->comment('状态');
             $table->timestamp('pre_processed_at')->comment('就绪时间')->nullable();
             $table->timestamp('pay_at')->comment('付款时间')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('payment_account_id',)

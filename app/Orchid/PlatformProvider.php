@@ -35,7 +35,7 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             Menu::make(__('admin.order_managements'))
-                ->icon('book-open')
+                ->icon('fa.bucket')
                 ->route('platform.services.orders')
                 ->permission('platform.services.orders.manage')
                 ->title(__('admin.orders_center')),

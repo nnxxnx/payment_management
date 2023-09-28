@@ -10,7 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\Where;
+use Orchid\Filters\Types\WhereBetween;
+use Orchid\Filters\Types\WhereIn;
 
 /**
  * App\Models\Order
@@ -49,11 +55,39 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Order whereStatus($value)
  * @method static Builder|Order whereUpdatedAt($value)
  * @method static Builder|Order whereUserName($value)
+ * @method static Builder|Order defaultSort(string $column, string $direction = 'asc')
+ * @method static Builder|Order filters(?mixed $kit = null, ?\Orchid\Filters\HttpFilter $httpFilter = null)
+ * @method static Builder|Order filtersApply(iterable $filters = [])
+ * @method static Builder|Order filtersApplySelection($class)
  * @mixin Eloquent
  */
 class Order extends Model
 {
     use HasFactory;
+    use Filterable;
+    use SoftDeletes;
+
+    protected array $allowedFilters = [
+        'id' => Where::class,
+        'serial_number' => Where::class,
+        'status' => WhereIn::class,
+        'user_name' => Like::class,
+        'mobile' => Like::class,
+        'id_number' => Like::class,
+        'note' => Like::class,
+        'updated_at' => WhereBetween::class,
+        'created_at' => WhereBetween::class,
+    ];
+
+    protected $fillable = [
+        'serial_number',
+        'bank_number',
+        'user_name',
+        'mobile',
+        'note',
+        'id_number',
+        'amount',
+    ];
 
     public function paymentAccount(): HasOne
     {
